@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0f7fa; /* 更换为清新的浅蓝色背景 */
+    font-family: 'Arial', sans-serif;
+}
+
+#animation {
+    width: 300px;
+    height: 300px;
+    background-color: #ffffff;
+    border: 2px solid #00796b; /* 增加边框颜色 */
+    border-radius: 10px; /* 边框圆角 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增加阴影效果 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.treasure {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: gold;
+    border-radius: 50%;
+    animation: move 2s infinite;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 增加宝藏的阴影效果 */
+}
+
+@keyframes move {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(100px, 100px); }
+    100% { transform: translate(0, 0); }
+}
+
+h1 {
+    color: #004d40; /* 标题颜色 */
+    text-align: center;
+    margin-bottom: 20px; /* 标题与动画之间的间距 */
+}

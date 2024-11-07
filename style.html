@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻宝游戏</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0f7fa; /* 更换为清新的浅蓝色背景 */
+            font-family: 'Arial', sans-serif;
+        }
+
+        #animation {
+            width: 300px;
+            height: 300px;
+            background-color: #ffffff;
+            border: 2px solid #00796b; /* 增加边框颜色 */
+            border-radius: 10px; /* 边框圆角 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增加阴影效果 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .treasure {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: move 2s infinite;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 增加宝藏的阴影效果 */
+        }
+
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(100px, 100px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        h1 {
+            color: #004d40; /* 标题颜色 */
+            text-align: center;
+            margin-bottom: 20px; /* 标题与动画之间的间距 */
+        }
+    </style>
+</head>
+<body>
+
+<h1>寻宝游戏</h1>
+<div id="animation">
+    <div class="treasure"></div>
+    寻宝中...
+</div>
+
+<script>
+    // 上面提供的 JavaScript 代码放在这里
+    class TreasureMap {
+        static getInitialClue() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve("在古老的图书馆里找到了第一个线索...");
+                }, 1000);
+            });
+        }
+
+        static decodeAncientScript(clue) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (!clue) {
+                        reject("没有线索可以解码!");
+                    }
+                    resolve("解码成功!宝藏在一座古老的神庙中...");
+                }, 1500);
+            });
+        }
+
+        static searchTemple(location) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const random = Math.random();
+                    if (random < 0.5) {
+                        reject("糟糕!遇到了神庙守卫!");
+                    }
+                    resolve("找到了一个神秘的箱子...");
+                }, 2000);
+            });
+        }
+
+        static findHiddenRoom(location) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const random = Math.random();
+                    if (random < 0.5) {
+                        reject("没有找到隐藏的房间!");
+                    }
+                    resolve("发现了一个隐藏的房间，里面有个宝箱!");
+                }, 2000);
+            });
+        }
+
+        static openTreasureBoxWithTimer() {
+            return new Promise((resolve) => {
+                const timer = setTimeout(() => {
+                    resolve("时间到，宝箱打不开了!");
+                }, 5000); // 5秒倒计时
+
+                // 模拟打开宝箱
+                setTimeout(() => {
+                    clearTimeout(timer);
+                    resolve("恭喜!你找到了传说中的宝藏!");
+                }, 3000); // 3秒后成功打开宝箱
+            });
+        }
+    }
+
+    async function findTreasure() {
+        try {
+            const clue = await TreasureMap.getInitialClue();
+            console.log(clue);
+            
+            const location = await TreasureMap.decodeAncientScript(clue);
+            console.log(location);
+            
+            const room = await TreasureMap.findHiddenRoom(location);
+            console.log(room);
+            
+            const treasure = await TreasureMap.openTreasureBoxWithTimer();
+            console.log(treasure);
+        } catch (error) {
+            console.error("任务失败:", error);
+        }
+    }
+
+    findTreasure();
+</script>
+
+</body>
+</html>
